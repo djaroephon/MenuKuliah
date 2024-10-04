@@ -1,4 +1,4 @@
-# rosterKuliah
+# MenuKuliah
 
 Still On Progress (Belum Siap)
 Target KEKNYA 2bln siap
