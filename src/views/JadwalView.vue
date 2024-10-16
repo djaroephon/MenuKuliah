@@ -1,54 +1,96 @@
 <script setup>
 import { ref } from 'vue';
 
-// Get the current day of the week
-const today = new Date().toLocaleDateString('en-US', { weekday: 'long' });
+const day = new Date().toLocaleDateString('ind',{weekday: 'long'});
 
-// Days data with schedule
-const days = ref([
-  { name: 'Senin', schedule: [{ time: '08:00-11:00', subject: 'Algoritma Pemrograman' }] },
-  { name: 'Selasa', schedule: [{ time: '10:00-12:00', subject: 'Agama Islam' }] },
-  { name: 'Rabu', schedule: [
-      { time: '08:00-10:00', subject: 'PENGANTAR TEKNOLOGI INFORMASI' },
-      { time: '10:00-11:00', subject: 'PENGENALAN PEMOGRAMAN' },
-      { time: '08:00-12:00', subject: 'Pancasila' },
-    ] 
-  },
-  { name: 'Kamis', schedule:[{ time: '14.00-17.00', subject: 'KONSEP SISTEM INFORMASI'}]},
-  { name: 'Jumat', schedule:[{ time: '14.00-17.00', subject: 'MATEMATIKA DISKRIT'}]},
-
+const roster = ref([
+  { hari: 'Senin', jadwal:[{ jam: '08:00-10:00', matkul: 'Algoritma Pemrograman'}], ruang:'Lab Komputer', dosen:'Pak Mahendar Dwi Payana' },
+  {hari: 'Selasa', jadwal:[{ jam: '10:00-12:00', matkul: 'Agama Islam'}], ruang:'Ruang C lt 2', dosen:'Pak Burhan' },
+  {hari: 'rabu', jadwal:[
+      {jam: '08:00-10:00', matkul: 'Pengantar Teknologi Informasi', ruang:'Lab Komputer', dosen:'Buk Desita Ria Yusian'} ,
+      {jam:'10:00-12:00', matkul: 'Pendidikan Pancasila', ruang:'Ruang M lt 3', dosen:'Pak Maya Surya'}  
+  ]},
+  {hari: 'Kamis', jadwal:[
+    {jam:'10:00-12:00', matkul:'Pengenalan pemograman', ruang:'Lab Komputer', dosen:'Pak Muammar'},
+    {jam:'14:00-17:00', matkul:'KONSEP SISTEM INFORMASI', ruang: 'Lab Komputer', dosen:'Buk Putri Seriyanti'}
+  ]},
+  {hari: 'Jumat', jadwal:[{jam:'14:00-17:00', matkul:'Matematika diskrit'}], ruang:'Ruang C lt 2', dosen:'Buk Mutiawati '}
 ]);
 
-// Function to check if the day is today
-const isToday = (day) => {
-  return today === day;
-};
+const getTodayRoster = () =>{
+  const todaySchedule = roster.value.find(r => r.hari.toLowerCase() === day.toLowerCase());
+
+  if (todaySchedule) {
+    todaySchedule.jadwal.sort((a, b) => {
+      const startTimeA = a.jam.split('-')[0];
+      const startTimeB = b.jam.split('-')[0];
+      
+      return startTimeA.localeCompare(startTimeB);
+    });
+  }
+
+  return todaySchedule;
+}
+
+const todayRoster = ref(getTodayRoster())
+
+
+
+
 </script>
 
 <template>
   <div class="ml-64 mt-10 pt-20">
-    <ol class="items-center sm:flex">
-      <li v-for="(day, index) in days" :key="index" class="relative mb-6 sm:mb-0">
-        <div class="flex items-center">
-          <div class="z-10 flex items-center justify-center w-6 h-6 bg-blue-100 rounded-full ring-0 ring-white dark:bg-blue-900 sm:ring-8 dark:ring-gray-900 shrink-0">
-            <svg class="w-2.5 h-2.5 text-blue-800 dark:text-blue-300" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 20 20">
-              <path d="M20 4a2 2 0 0 0-2-2h-2V1a1 1 0 0 0-2 0v1h-3V1a1 1 0 0 0-2 0v1H6V1a1 1 0 0 0-2 0v1H2a2 2 0 0 0-2 2v2h20V4ZM0 18a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2V8H0v10Zm5-8h10a1 1 0 0 1 0 2H5a1 1 0 0 1 0-2Z"/>
-            </svg>
-          </div>
-          <div class="hidden sm:flex w-full bg-gray-200 h-0.5 dark:bg-gray-700"></div>
-        </div>
-        <div class="mt-3 sm:pe-8">
-          <h3 :class="isToday(day.name) ? 'text-lg font-semibold text-gray-900 dark:text-white font-bold' : 'text-lg font-semibold text-gray-900 dark:text-white'">
-            {{ day.name }}
-          </h3>
-          <div v-for="(item, i) in day.schedule" :key="i">
-            <time class="block mb-2 text-sm font-normal leading-none text-gray-400 dark:text-gray-500">Jam {{ item.time }}</time>
-            <p class="text-base font-normal text-gray-500 dark:text-gray-400">{{ item.subject }}</p>
-          </div>
-        </div>
-      </li>
-    </ol>
+      <h5 id="dayName" class="text-center text-2xl">Jadwal hari {{ day }}</h5>
+<div class="relative overflow-x-auto shadow-md sm:rounded-lg">
+    <table class="w-full text-sm text-left rtl:text-right text-gray-500 dark:text-gray-400">
+        <caption class="p-5 text-lg font-semibold text-left rtl:text-right text-gray-900 bg-white dark:text-white dark:bg-gray-800">
+            Hari {{ day }}
+        </caption>
+        <thead class="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
+            <tr>
+                <th scope="col" class="px-6 py-3">
+                    Mata kuliah
+                </th>
+                <th scope="col" class="px-6 py-3">
+                    Waktu
+                </th>
+                <th scope="col" class="px-6 py-3">
+                    Ruang
+                </th>
+                <th scope="col" class="px-6 py-3">
+                    Dosen
+                </th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700" v-for="(item, index) in todayRoster?.jadwal" :key="index">
+                <th scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
+                    {{ item.matkul }}
+                </th>
+                <td class="px-6 py-4">
+                    {{ item.jam }}
+                </td>
+                <td class="px-6 py-4">
+                    {{ item.ruang }}
+                </td>
+                <td class="px-6 py-4">
+                    {{ item.dosen }}
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</div>
+
   </div>
 </template>
 
->
+<style scoped>
+@import url('https://fonts.googleapis.com/css2?family=Rubik:ital,wght@0,300..900;1,300..900&display=swap');
+
+#dayName{
+  font-family:"Rubik", sans-serif ;
+}
+
+</style>
+
