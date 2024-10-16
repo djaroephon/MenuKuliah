@@ -49,6 +49,9 @@ const toggleDropdown = () => {
                 <p class="text-sm font-medium text-gray-900 truncate dark:text-gray-300" role="none">
                   Djaroephon@gmail.com
                 </p>
+                <a class="text-sm font-medium text-emerald-400 truncate dark:text-gray-300" href="https://djaroephon.netlify.app/">
+                  My Profile
+                </a>
               </div>
             </div>
           </div>
