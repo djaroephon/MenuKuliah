@@ -117,3 +117,29 @@ const toggleDropdown = () => {
     </div>
   </aside>
 </template>
+
+<style scoped>
+/* Add styles for the sidebar and responsive behavior */
+body {
+  transition: margin-left 0.3s;
+}
+
+#logo-sidebar {
+  transition: transform 0.3s ease;
+}
+
+.bg-gray {
+  background-color: #f9fafb; /* Change the color as needed */
+}
+
+.fixed {
+  transition: margin-left 0.3s;
+}
+
+/* Mobile adjustments */
+@media (max-width: 640px) {
+  .p-6 {
+    padding-left: 0; /* Reset padding for mobile */
+  }
+}
+</style>
