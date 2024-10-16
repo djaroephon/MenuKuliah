@@ -5,17 +5,15 @@ import { ref } from 'vue';
 const tugasKuliah = ref([
 { title: 'Matematika Diskrit' },
   { title: 'Algoritma Pemrograman' },
-  { title: 'PTI' },
+  { title: 'Pengenalan Teknologi Informasi' },
   { title: 'PENGENALAN PEMOGRAMAN' },
   { title: 'PANCASILA' },
   { title: 'AGAMA ISLAM' },
   {title: 'KONSEP SISTEM INFORMASI'},
 ]);
 
-// Dropdown state
 const isDropdownOpen = ref(false);
 
-// Function to toggle dropdown visibility
 const toggleDropdown = () => {
   isDropdownOpen.value = !isDropdownOpen.value;
 };
@@ -84,7 +82,7 @@ const toggleDropdown = () => {
         <path d="M15 12a1 1 0 0 0 .962-.726l2-7A1 1 0 0 0 17 3H3.77L3.175.745A1 1 0 0 0 2.208 0H1a1 1 0 0 0 0 2h.438l.6 2.255v.019l2 7 .746 2.986A3 3 0 1 0 9 17a2.966 2.966 0 0 0-.184-1h2.368c-.118.32-.18.659-.184 1a3 3 0 1 0 3-3H6.78l-.5-2H15Z" />
       </svg>
       <!-- Label -->
-      <span class="flex-1 ms-3 text-left rtl:text-right whitespace-nowrap">Tugas Kuliah</span>
+      <span class="flex-1 ms-3 text-left rtl:text-right whitespace-nowrap">Mata Kuliah</span>
       <!-- Badge Notification for Task Count -->
       <!-- <span v-if="tugasKuliah.length > 0" class="bg-red-500 text-white text-xs font-semibold ml-2 py-0.5 px-2 rounded-full">
         {{ tugasKuliah.length }}
