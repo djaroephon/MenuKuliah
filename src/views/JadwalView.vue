@@ -18,7 +18,7 @@ const roster = ref([
       { jam: '14:00-17:00', matkul: 'KONSEP SISTEM INFORMASI', ruang: 'Lab Komputer', dosen: 'Buk Putri Seriyanti' }
     ]
   },
-  { hari: 'Jumat', jadwal: [{ jam: '14:00-17:00', matkul: 'Matematika Diskrit' }], ruang: 'Ruang C lt 2', dosen: 'Buk Mutiawati ' }
+  { hari: 'Jumat', jadwal: [{ jam: '14:00-17:00', matkul: 'Matematika Diskrit' }], ruang: 'Ruang I lt 3', dosen: 'Buk Mutiawati ' }
 ]);
 
 const getTodayRoster = () => {
