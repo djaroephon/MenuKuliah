@@ -5,7 +5,7 @@ const day = new Date().toLocaleDateString('ind', { weekday: 'long' });
 
 const roster = ref([
   { hari: 'Senin', jadwal: [{ jam: '08:00-10:00', matkul: 'Algoritma Pemrograman',  ruang: 'Lab Komputer', dosen: 'Pak Mahendar Dwi Payana' }] },
-  { hari: 'Selasa', jadwal: [{ jam: '10:00-12:00', matkul: 'Agama Islam' }], ruang: 'Ruang C lt 2', dosen: 'Pak Burhan' },
+  { hari: 'Selasa', jadwal: [{ jam: '10:00-12:00', matkul: 'Agama Islam', ruang: 'Ruang C lt 2', dosen: 'Pak Burhan'  }]},
   {
     hari: 'Rabu', jadwal: [
       { jam: '08:00-10:00', matkul: 'Pengantar Teknologi Informasi', ruang: 'Lab Komputer', dosen: 'Buk Desita Ria Yusian' },
@@ -18,7 +18,7 @@ const roster = ref([
       { jam: '14:00-17:00', matkul: 'KONSEP SISTEM INFORMASI', ruang: 'Lab Komputer', dosen: 'Buk Putri Seriyanti' }
     ]
   },
-  { hari: 'Jumat', jadwal: [{ jam: '14:00-17:00', matkul: 'Matematika Diskrit' }], ruang: 'Ruang I lt 3', dosen: 'Buk Mutiawati ' }
+  { hari: 'Jumat', jadwal: [{ jam: '14:00-17:00', matkul: 'Matematika Diskrit', ruang: 'Ruang C lt 2', dosen: 'Buk Mutiawati '  }]}
 ]);
 
 const getTodayRoster = () => {
