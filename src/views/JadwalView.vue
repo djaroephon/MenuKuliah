@@ -4,7 +4,7 @@ import { ref } from 'vue';
 const day = new Date().toLocaleDateString('ind', { weekday: 'long' });
 
 const roster = ref([
-  { hari: 'Senin', jadwal: [{ jam: '08:00-10:00', matkul: 'Algoritma Pemrograman' }], ruang: 'Lab Komputer', dosen: 'Pak Mahendar Dwi Payana' },
+  { hari: 'Senin', jadwal: [{ jam: '08:00-10:00', matkul: 'Algoritma Pemrograman',ruang: 'Lab Komputer', dosen: 'Pak Mahendar Dwi Payana'  }],
   { hari: 'Selasa', jadwal: [{ jam: '10:00-12:00', matkul: 'Agama Islam' }], ruang: 'Ruang C lt 2', dosen: 'Pak Burhan' },
   {
     hari: 'Rabu', jadwal: [
