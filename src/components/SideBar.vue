@@ -101,11 +101,26 @@ const toggleDropdown = () => {
 </template>
 
 <style scoped>
-nav {
-  background-color: #2c3e50;
+body {
+  transition: margin-left 0.3s;
 }
 
-.router-link-active {
-  color: #42b983;
+#logo-sidebar {
+  transition: transform 0.3s ease;
+}
+
+.bg-gray {
+  background-color: #f9fafb; /* Change the color as needed */
+}
+
+.fixed {
+  transition: margin-left 0.3s;
+}
+
+/* Mobile adjustments */
+@media (max-width: 640px) {
+  .p-6 {
+    padding-left: 0; /* Reset padding for mobile */
+  }
 }
 </style>
