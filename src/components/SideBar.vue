@@ -103,6 +103,21 @@ const toggleDropdown = () => {
             <span class="flex-1 ms-3 whitespace-nowrap">Jadwal Kuliah</span>
           </router-link>
         </li>
+      <li>
+  <router-link to="/todo" class="flex items-center p-2 text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 group">
+    <svg class="flex-shrink-0 w-8 h-8 text-gray-500 transition duration-75 dark:text-gray-400 group-hover:text-gray-900 dark:group-hover:text-white" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 34 34">
+      <g fill="none" stroke="#000" stroke-miterlimit="10" stroke-width="2">
+        <path d="m15 16h13"/>
+        <path d="m5 16 2 2 4-4"/>
+        <path d="m15 8h13"/>
+        <path d="m5 8 2 2 4-4"/>
+        <path d="m15 24h13"/>
+        <path d="m5 24 2 2 4-4"/>
+      </g>
+    </svg>
+    <span class="flex-1 ms-3 whitespace-nowrap">To-do List</span>
+  </router-link>
+</li>
       </ul>
     </div>
   </aside>
