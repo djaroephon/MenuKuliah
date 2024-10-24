@@ -1,3 +1,51 @@
+<script setup>
+import { ref, onMounted, watch } from 'vue';
+
+// State untuk menyimpan nilai dropdown dan input
+const selectedMatkul = ref('');
+const todoInput = ref('');
+const todo = ref([]); // Array untuk menyimpan data todo
+
+// Fungsi untuk menambahkan data ke dalam tabel
+const handleSubmit = (event) => {
+  event.preventDefault(); // Mencegah form refresh
+
+  // Validasi input
+  
+
+  if (!todoInput.value) {
+    alert('Silakan masukkan to do');
+    return;
+  }
+
+  // Tambahkan data baru ke array todo
+  todo.value.push({
+    matkul: selectedMatkul.value,
+    todo: todoInput.value,
+    waktu: new Date().toLocaleDateString() // Menyimpan hanya tanggal
+  });
+
+  // Simpan ke localStorage
+  localStorage.setItem('todoList', JSON.stringify(todo.value));
+
+  // Reset input setelah submit
+  selectedMatkul.value = '';
+  todoInput.value = '';
+};
+
+// Mengambil data dari localStorage ketika aplikasi pertama kali dimuat
+onMounted(() => {
+  const savedTodos = localStorage.getItem('todoList');
+  if (savedTodos) {
+    todo.value = JSON.parse(savedTodos);
+  }
+});
+
+// Watcher untuk menyimpan perubahan ke localStorage secara otomatis
+watch(todo, (newTodo) => {
+  localStorage.setItem('todoList', JSON.stringify(newTodo));
+}, { deep: true });
+</script>
 <template>
   <div class="flex flex-col items-center mt-40"> <!-- Menggunakan margin-top 16 untuk memberi jarak dari atas -->
     <!-- Form untuk input To Do -->
@@ -83,57 +131,7 @@
   </div>
 </template>
 
-<script setup>
-import { ref, onMounted, watch } from 'vue';
 
-// State untuk menyimpan nilai dropdown dan input
-const selectedMatkul = ref('');
-const todoInput = ref('');
-const todo = ref([]); // Array untuk menyimpan data todo
-
-// Fungsi untuk menambahkan data ke dalam tabel
-const handleSubmit = (event) => {
-  event.preventDefault(); // Mencegah form refresh
-
-  // Validasi input
-  if (!selectedMatkul.value) {
-    alert('Silakan pilih mata kuliah terlebih dahulu.');
-    return;
-  }
-
-  if (!todoInput.value) {
-    alert('Silakan masukkan to do');
-    return;
-  }
-
-  // Tambahkan data baru ke array todo
-  todo.value.push({
-    matkul: selectedMatkul.value,
-    todo: todoInput.value,
-    waktu: new Date().toLocaleDateString() // Menyimpan hanya tanggal
-  });
-
-  // Simpan ke localStorage
-  localStorage.setItem('todoList', JSON.stringify(todo.value));
-
-  // Reset input setelah submit
-  selectedMatkul.value = '';
-  todoInput.value = '';
-};
-
-// Mengambil data dari localStorage ketika aplikasi pertama kali dimuat
-onMounted(() => {
-  const savedTodos = localStorage.getItem('todoList');
-  if (savedTodos) {
-    todo.value = JSON.parse(savedTodos);
-  }
-});
-
-// Watcher untuk menyimpan perubahan ke localStorage secara otomatis
-watch(todo, (newTodo) => {
-  localStorage.setItem('todoList', JSON.stringify(newTodo));
-}, { deep: true });
-</script>
 
 <style scoped>
 /* Styling untuk margin dan padding yang lebih sesuai */
