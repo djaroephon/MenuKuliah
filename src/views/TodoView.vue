@@ -1,10 +1,8 @@
 <template>
-  <div class="flex flex-col items-center mt-20 w-full"> <!-- Menggunakan margin-top untuk jarak dari atas -->
-    <!-- Form untuk input To Do -->
-    <form @submit="handleSubmit" class="w-full max-w-3xl bg-white rounded-lg shadow-md p-6"> <!-- Form dengan background putih -->
-      <h2 class="text-xl font-semibold mb-4 text-center">Tambah To Do</h2> <!-- Judul Form -->
-      <div class="flex items-center space-x-4 mt-4"> <!-- Menambahkan margin-top pada flex container -->
-        <!-- Dropdown untuk Mata Kuliah -->
+  <div class="flex flex-col items-center mt-20 w-full"> 
+    <form @submit="handleSubmit" class="w-full max-w-3xl bg-white rounded-lg shadow-md p-6"> 
+      <h2 class="text-xl font-semibold mb-4 text-center">Tambah To Do</h2> 
+      <div class="flex items-center space-x-4 mt-4">
         <div class="relative w-1/3">
           <select
             v-model="selectedMatkul"
@@ -25,7 +23,7 @@
           </div>
         </div>
 
-        <!-- Input untuk To Do -->
+     
         <div class="relative w-2/3">
           <input
             type="text"
@@ -46,8 +44,8 @@
       </div>
     </form>
 
-    <!-- Tabel To Do -->
-    <div class="relative overflow-x-auto shadow-md sm:rounded-lg w-full max-w-3xl mt-4"> <!-- Mengurangi margin-top untuk tabel -->
+    
+    <div class="relative overflow-x-auto shadow-md sm:rounded-lg w-full max-w-3xl mt-4"> 
       <table class="min-w-full text-sm text-left text-gray-500 dark:text-gray-400">
         <thead class="text-xs text-gray-700 uppercase bg-gray-100 dark:bg-gray-700 dark:text-gray-400 text-center">
           <tr>
@@ -81,38 +79,31 @@
 
 <script setup>
 import { ref, onMounted, watch } from 'vue';
-
-// State untuk menyimpan nilai dropdown dan input
 const selectedMatkul = ref('');
 const todoInput = ref('');
-const todo = ref([]); // Array untuk menyimpan data todo
+const todo = ref([]); 
 
-// Fungsi untuk menambahkan data ke dalam tabel
+
 const handleSubmit = (event) => {
-  event.preventDefault(); // Mencegah form refresh
+  event.preventDefault(); 
 
-  // Validasi input
+ 
   if (!todoInput.value) {
     alert('Silakan masukkan to do');
     return;
   }
 
-  // Tambahkan data baru ke array todo
+
   todo.value.push({
     matkul: selectedMatkul.value,
     todo: todoInput.value,
-    waktu: new Date().toLocaleDateString() // Menyimpan hanya tanggal
+    waktu: new Date().toLocaleDateString() 
   });
-
-  // Simpan ke localStorage
   localStorage.setItem('todoList', JSON.stringify(todo.value));
-
-  // Reset input setelah submit
   selectedMatkul.value = '';
   todoInput.value = '';
 };
 
-// Mengambil data dari localStorage ketika aplikasi pertama kali dimuat
 onMounted(() => {
   const savedTodos = localStorage.getItem('todoList');
   if (savedTodos) {
@@ -120,19 +111,18 @@ onMounted(() => {
   }
 });
 
-// Watcher untuk menyimpan perubahan ke localStorage secara otomatis
+
 watch(todo, (newTodo) => {
   localStorage.setItem('todoList', JSON.stringify(newTodo));
 }, { deep: true });
 </script>
 
 <style scoped>
-/* Styling untuk margin dan padding yang lebih sesuai */
 .mt-10 {
   margin-top: 2.5rem;
 }
 
-.mt-4 { /* Mengurangi margin-top untuk tabel */
+.mt-4 {
   margin-top: 1rem;
 }
 
@@ -140,7 +130,7 @@ select {
   -moz-appearance: none;
   -webkit-appearance: none;
   appearance: none;
-  background-image: none; /* Remove default arrow */
+  background-image: none; 
 }
 
 .hover\:bg-blue-800:hover {
