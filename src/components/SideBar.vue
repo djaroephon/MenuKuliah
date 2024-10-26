@@ -133,7 +133,7 @@ body {
 }
 
 .bg-gray {
-  background-color: #f9fafb; /* Change the color as needed */
+  background-color: #f9fafb;
 }
 
 .fixed {
@@ -143,7 +143,7 @@ body {
 /* Mobile adjustments */
 @media (max-width: 640px) {
   .p-6 {
-    padding-left: 0; /* Reset padding for mobile */
+    padding-left: 0;
   }
 }
 </style>
